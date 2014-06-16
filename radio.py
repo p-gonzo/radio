@@ -90,6 +90,15 @@ def get_weather():
     print weather
     #ser.write(str(weather + "`"))  #Written Here
     
+def tweet_song():
+    raw_song_info = os.popen("mpc current")
+    song_info = raw_song_info.read()
+    song_info = song_info[10:]
+    info_start = song_info.index(":")
+    artist_and_title = song_info[info_start + 2:]
+    artist_and_title = artist_and_title.rstrip()
+    os.system('tweet ' + "'" + artist_and_title + "'")  #calls CLI tweet command 
+    print "'" + artist_and_title + "'" + "Tweeted!"
 
 #---------------------------------------------------------------------------
 while True:
@@ -142,6 +151,10 @@ while True:
         if x == "Display!" and current_display == "time_weather":
            current_display = "music"
            x = ""
+
+        if x == "Tweet!":
+            tweet_song()
+
     if arduino_line1 != line1:
         ser.write(str(line1+ "~"))
         arduino_line1 = line1
