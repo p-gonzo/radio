@@ -1,0 +1,38 @@
+#! /usr/bin/env python
+
+#A simple script that uses tweepy (https://github.com/joshthecoder/tweepy) to
+#Update the status of a twitter account from the command line.  
+
+#install tweepy from pip
+#Register a twitter app (https://apps.twitter.com/) to get the 4 "keys" and paste them into this file
+#Save this file as 'tweet' in /usr/local/bin then chmod -x the file
+#Now type # tweet 'Twitter from bash!' and enjoy twitter updates from the command line!
+
+import sys
+import tweepy
+
+
+API_KEY = '******************'
+API_SECRET = '******************************************'
+
+
+ACCESS_TOKEN_KEY= '***********************************************'
+ACCESS_TOKEN_SECRET= '********************************************'
+
+
+def tweet(status):
+    if len(status) > 140:
+        raise Exception('status message is too long!')
+    auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
+    auth.set_access_token(ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
+    api = tweepy.API(auth)
+    result = api.update_status(status)
+    return result
+
+def get_status():
+    status = ""
+    for arg in sys.argv[1:]:
+        status = status + arg + " "
+    tweet(status)
+
+get_status()
