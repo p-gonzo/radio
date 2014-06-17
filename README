@@ -1,2 +1,6 @@
-hello world!
-Now with edits...
+An internet radio project built using the Raspberry Pi and an Arduino
+The Pi is running an raspbian image with a python sketch controling the linux Music player daemon
+The Radio also contains a button to publish the current song to twitter
+Check it out @ www.twitter.com/nica_radio
+
+In addition to streaming internet radio, the radio can currently display the time and weather, and tweet songs.
